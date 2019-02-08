@@ -7,19 +7,28 @@
 #
 layout: home
 ---
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/sqsun/iDEA/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## iDEA Overview
+iDEA integrates DE analysis and GSEA into a joint statistical framework, providing substantial power gains for both analytic tasks, and it requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods.![iDEA\_pipeline](MethodOverview.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Inputs
+------------
+### 1. Summary statistics from single-cell RNAseq DE approaches (i.e., zingeR, MAST, etc.), e.g.,
+```
+        beta	       beta_var
+A1BG     -1.028331e-02 0.005304736
+A1BG-AS1 -2.173872e-03 0.008438381
+A2M       8.671972e-06 0.002353646
+...
+```
+The summary statistics file is required data.frame format with row names, while the header is allowed but not required.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
+### 2. Gene specific annotations from public databases (i.e., KEGG, Reactome, etc.), e.g.,
+```
+        annot1    annot2
+A1BG     0      1
+A1BG-AS1 1      0
+A2M      0      0
+...
+```
+The gene specific annotation file is required data.frame format. The row names are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc; the header is allowed but not required. 
