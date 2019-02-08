@@ -58,7 +58,23 @@ data(annotation) ## gene sets
 
 ```r
 head(summary)
+```
 
+```r
+head(annotation[,1:5])
+```
+
+Create a new `iDEA` object. We encourage to use `num_core` if a large number of annotations is input (only Linux). 
+
+```r
+idea <- CreateiDEAObject(summary,annotation,num_core=10)
+```
+The data are stored in `idea@summary` and `idea@annotation`.
+```r
+head(idea@summary)
+```
+
+```
 ##       log2FoldChange      lfcSE2
 ## A1BG      0.90779290 0.25796491
 ## A1CF      0.36390514 0.03568627
@@ -69,8 +85,9 @@ head(summary)
 ```
 
 ```r
-head(annotation[,1:5])
-
+head(idea@annotation[,1:5])
+```
+```
 ##           GO_CELLULAR_RESPONSE_TO_LIPID GO_SECRETION_BY_CELL
 ## A1BG                              0                    1
 ## A1CF                              0                    0
@@ -87,13 +104,6 @@ head(annotation[,1:5])
 ## AAAS                                                 0
 
 ```
-
-Create a new `iDEA` object. We encourage to use `num_core` if a large number of annotations is input (only Linux). 
-
-```r
-idea <- CreateiDEAObject(summary,annotation,num_core=10)
-```
-
 ```
 ## Initializing expression matrices ... 
 ## Normalizing gene expression for 6082 genes and 75 cells ... 
