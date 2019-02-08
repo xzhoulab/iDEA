@@ -66,7 +66,7 @@ head(annotation[,1:5])
 ```
 
 ### 2. Create an `iDEA` object
-We encourage the user use `num_core` if a large number of annotations is input (only Linux). 
+We encourage the user use `num_core` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
 
 ```r
 idea <- CreateiDEAObject(summary, annotation, num_core=10)
