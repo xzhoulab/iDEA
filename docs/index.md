@@ -88,22 +88,10 @@ head(annotation[,1:5])
 
 ```
 
-```r
-print(mart.obj)
-```
-
-```
-## Object of class 'Mart':
-##  Using the ENSEMBL_MART_ENSEMBL BioMart database
-##  Using the hsapiens_gene_ensembl dataset
-```
-
-Make a new `HoneyBADGER` object and initialize the gene expression matrices. The data has already been filtered for highly expressed shared genes and scaled for library size differences so we can override the default filtering and scaling. 
-
+Create a new `iDEA` object. We encourage to use `num_core` if a large number of annotations is input (only Linux). 
 
 ```r
-hb <- new('HoneyBADGER', name='MGH31')
-hb$setGexpMats(gexp, ref, mart.obj, filter=FALSE, scale=FALSE, verbose=TRUE)
+idea <- CreateiDEAObject(summary,annotation,num_core=10)
 ```
 
 ```
