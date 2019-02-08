@@ -1,8 +1,7 @@
 ---
+layout: page
 title: Installation
-output:
-pkgdown:
-  toc: FALSE
+permalink: /installation/
 ---
 
 `iDEA` is implemented as an
