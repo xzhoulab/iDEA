@@ -67,7 +67,7 @@ head(annotation[,1:5])
 Create a new `iDEA` object. We encourage to use `num_core` if a large number of annotations is input (only Linux). 
 
 ```r
-idea <- CreateiDEAObject(summary,annotation,num_core=10)
+idea <- CreateiDEAObject(summary, annotation, num_core=10)
 ```
 The data are stored in `idea@summary` and `idea@annotation`.
 ```r
@@ -102,20 +102,8 @@ head(idea@annotation[,1:5])
 ## A2M                                                  0
 ## A2ML1                                                0
 ## AAAS                                                 0
-
-```
-```
-## Initializing expression matrices ... 
-## Normalizing gene expression for 6082 genes and 75 cells ... 
-## Done setting initial expression matrices!
 ```
 
-The inputted gene expression matrix is normalized using the reference such that we may expect large-scale deviations in expression from the reference on average to be indicative of underlying CNVs. We can visualize the smoothed gene expression using the following profile. 
-
-
-```r
-hb$plotGexpProfile() ## initial visualization
-```
 
 ![plot of chunk unnamed-chunk-8](figure/Getting_Started/unnamed-chunk-8-1.png)
 
