@@ -8,7 +8,6 @@
 layout: home
 ---
 
-## iDEA Overview
 ![iDEA\_pipeline](MethodOverview.png)
 
 Inputs
