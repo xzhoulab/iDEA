@@ -1,14 +1,14 @@
 ---
 title: Installation
 output:
-  pkgdown:
-    toc: FALSE
+pkgdown:
+  toc: FALSE
 ---
 
 `iDEA` is implemented as an
 R package, `r BiocStyle::Githubpkg('xzhoulab', 'iDEA')`, which can be
 installed from GitHub by:
-  
+
 ```{r, eval = FALSE}
 # install devtools if necessary
 install.packages('devtools')
