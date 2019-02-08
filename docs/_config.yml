@@ -10,7 +10,7 @@ date_format: "%b %-d, %Y"
 
 # generate social links in footer
 social_links:
-github:  xzhoulab
+github: xzhoulab
 rss: rss
 # dribbble: jekyll
 # facebook: jekyll
