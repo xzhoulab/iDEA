@@ -20,7 +20,7 @@ variant: markdown_github
 ## Preparing input data
 ------------
 
-`iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods. With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis.
+`iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Also `iDEA` requires a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.). With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis.
 
 ### 1. Summary statistics, e.g.,
 ```
@@ -46,11 +46,10 @@ The gene specific annotation file is required `data.frame` data format with row 
 -------------
 ```r
 library(iDEA)
-```
-In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNAseq data has been prepared for you and is included in the `iDEA` package. 
+``` 
 
 ### 1. Load the summary statistics and annotations
-the summary statistics is from the single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Here, we provide zingeR-DESeq2 results. Also load a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.). The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
+In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNAseq data has been prepared for you and is included in the `iDEA` package. Here, we provide zingeR-DESeq2 results. The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
 
 
 ```r
