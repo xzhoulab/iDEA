@@ -45,7 +45,7 @@ Getting started
 library(iDEA)
 ```
 
-`iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods. With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis. In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNA-seq data has been prepared for you and is included in the `iDEA` package. 
+`iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods. With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis. In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNAseq data has been prepared for you and is included in the `iDEA` package. 
 
 First, load the gene expression matrices for tumor cells along with a normal expression reference derived from averaging normal brain samples found in [GTex](https://www.gtexportal.org/home/). Also load a corresponding biomaRt instance (for human) to obtain chromosomal coordinate information for our genes. 
 
