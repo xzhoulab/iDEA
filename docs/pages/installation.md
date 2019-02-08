@@ -6,7 +6,7 @@ permalink: /installation/
 
 `iDEA` is implemented as an R package, which can be installed from GitHub by:
 
-### 1. Install devtools if necessary
+#### 1. Install devtools if necessary
 ```r
 install.packages('devtools')
 ```
