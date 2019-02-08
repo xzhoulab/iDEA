@@ -47,8 +47,8 @@ library(iDEA)
 
 `iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods. With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis. In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNAseq data has been prepared for you and is included in the `iDEA` package. 
 
-First, load the summary statistics, which is from the single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Here, we provide zingeR-DESeq2 results. Also load a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.),
-The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to obtain gene information for the given genes.
+First, load the summary statistics, which is from the single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Here, we provide zingeR-DESeq2 results. Also load a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.).
+The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
 
 
 ```r
