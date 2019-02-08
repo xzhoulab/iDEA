@@ -6,8 +6,8 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 #
 layout: home
-author: "Jean Fan"
-date: '2018-01-06'
+author: "Shiquan Sun"
+date: '2019-02-08'
 output:
 pdf_document: default
 html_document: default
@@ -45,7 +45,7 @@ Getting started
 library(iDEA)
 ```
 
-`iDEA` identifies and quantitatively infers the presence of CNV and LOH events in single cells using allele and normalized expression information from single-cell RNA-seq data. In this tutorial, we will use `HoneyBADGER` to detect CNVs in glioblastoma tumor cells from patient MGH31 from [Patel et al](http://science.sciencemag.org/content/344/6190/1396). The single-cell RNA-seq data has been prepared for you and is included in the `HoneyBADGER` package. 
+`iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their standard errors as input, which can be obtained using any existing scRNAseq DE methods. With DE test statistics as input, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis. In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The single-cell RNA-seq data has been prepared for you and is included in the `iDEA` package. 
 
 First, load the gene expression matrices for tumor cells along with a normal expression reference derived from averaging normal brain samples found in [GTex](https://www.gtexportal.org/home/). Also load a corresponding biomaRt instance (for human) to obtain chromosomal coordinate information for our genes. 
 
