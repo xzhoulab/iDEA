@@ -105,9 +105,7 @@ head(idea@annotation[,1:5])
 ## AAAS                                                 0
 ```
 
-
-![plot of chunk unnamed-chunk-8](figure/Getting_Started/unnamed-chunk-8-1.png)
-
+### 3. Fit the model. 
 Here, each row is a single cell. Genes are organized based on their position along each chromosome. Expression has been smoothed using a sliding window approach. Red indicates higher average expression compared to the reference and blue indicates lower. Visually, such expression-based karyotyping already suggests some chromosomal abnormalities. To provide a more quantitative assessment, we can model the gene expression variance and use an iterative HMM approach to identify regions affected by CNVs.
 
 
