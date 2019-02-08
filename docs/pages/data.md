@@ -1,8 +1,7 @@
 ---
+layout: page
 title: Datasets
-output:
-  pkgdown:
-    toc: FALSE
+permalink: /data/
 ---
 
   * [Processed RNA-seq data from bulk pancreatic islets in healthy and
