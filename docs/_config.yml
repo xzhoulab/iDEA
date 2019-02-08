@@ -2,6 +2,7 @@ title: iDEA
 author: Shiquan Sun
 email: shiquans@umich.umich
 description: Integrative Differential Expression and Gene Set Enrichment Analysis for Single Cell RNAseq Studies
+
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 minima:
@@ -38,6 +39,7 @@ social_links:
 # - about.md
 
 # Build settings
+markdown:kramdown
 theme: minima
 
 plugins:
