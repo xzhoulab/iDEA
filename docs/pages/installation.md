@@ -4,16 +4,18 @@ title: Installation
 permalink: /installation/
 ---
 
-`iDEA` is implemented as an
-R package, which can be installed from GitHub by:
+`iDEA` is implemented as an R package, which can be installed from GitHub by:
 
+### install devtools if necessary
 ```r
-# install devtools if necessary
 install.packages('devtools')
+```
 
-# install iDEA
+#### install iDEA
+```r
 devtools::install_github('xzhoulab/iDEA')
-
-# load
+```
+#### load package
+```r
 library(iDEA)
 ```
