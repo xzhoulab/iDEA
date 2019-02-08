@@ -1,5 +1,5 @@
 ---
-title: Data download
+title: Datasets
 output:
   pkgdown:
     toc: FALSE
