@@ -1,21 +1,20 @@
-# minima
+# iDEA
+Integrative Differential expression and gene set Enrichment Analysis for single cell RNAseq studies 
 
-*Minima is a one-size-fits-all Jekyll theme for writers*. It's Jekyll's default (and first) theme. It's what you get when you run `jekyll new`.
+Installation
+------------
+``` r
+# install devtools if necessary
+install.packages('devtools')
 
-***Disclaimer:** The information here may vary depending on the version you're using. Please refer to the `README.md` bundled
-within the theme-gem for information specific to your version or by pointing your browser to the Git tag corresponding to your
-version. e.g. https://github.com/jekyll/minima/blob/v2.5.0/README.md*  
-*Running `bundle show minima` will provide you with the local path to your current theme version.*
+# install the iDEA package
+devtools::install_github('xzhoulab/iDEA')
 
-
-[Theme preview](https://jekyll.github.io/minima/)
-
-![minima theme preview](/screenshot.png)
-
-## Installation
-
-Add this line to your Jekyll site's Gemfile:
-
-```ruby
-gem "minima"
+# load package
+library(iDEA)
 ```
+
+How to cite `iDEA`
+-------------------
+Shiquan Sun, Ying Ma, Mengjie Chen and Xiang Zhou. *Integrative differential expression and gene set enrichment analysis for single cell RNAseq studies*, BioRxiv, 2019. 
+
