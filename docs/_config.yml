@@ -1,6 +1,6 @@
 title: iDEA
 author: Shiquan Sun
-email: shiquans@umich.umich
+email: shiquans@umich.edu
 description: Integrative Differential Expression and Gene Set Enrichment Analysis for Single Cell RNAseq Studies
 
 # Minima date format
@@ -10,8 +10,7 @@ date_format: "%b %-d, %Y"
 
 # generate social links in footer
 social_links:
-  twitter: jekyllrb
-  github:  jekyll
+  github:  xzhoulab
   rss: rss
   # dribbble: jekyll
   # facebook: jekyll
