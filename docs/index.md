@@ -19,33 +19,33 @@ variant: markdown_github
 
 Preparing input data
 ------------
-### 1. Summary statistics from single-cell RNAseq DE approaches (i.e., zingeR, MAST, etc.), e.g.,
+### 1. Summary statistics from single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.), e.g.,
 ```
-beta	       beta_var
+          beta	       beta_var
 A1BG     -1.028331e-02 0.005304736
 A1BG-AS1 -2.173872e-03 0.008438381
 A2M       8.671972e-06 0.002353646
 ...
 ```
-The summary statistics file is required 'data.frame' format with row names, while the header is allowed but not required.
+The summary statistics file is required `data.frame` format with row names, while the header is allowed but not required.
 
 ### 2. Gene specific annotations from public databases (i.e., KEGG, Reactome, etc.), e.g.,
 ```
-annot1    annot2
+      annot1  annot2
 A1BG     0      1
 A1BG-AS1 1      0
 A2M      0      0
 ...
 ```
-The gene specific annotation file is required 'data.frame' format. The row names are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc; the header is allowed but not required. 
+The gene specific annotation file is required `data.frame` format. The row names are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc; the header is allowed but not required. 
 
 Getting started
 -------------
 ```r
-library(HoneyBADGER)
+library(iDEA)
 ```
 
-`HoneyBADGER` identifies and quantitatively infers the presence of CNV and LOH events in single cells using allele and normalized expression information from single-cell RNA-seq data. In this tutorial, we will use `HoneyBADGER` to detect CNVs in glioblastoma tumor cells from patient MGH31 from [Patel et al](http://science.sciencemag.org/content/344/6190/1396). The single-cell RNA-seq data has been prepared for you and is included in the `HoneyBADGER` package. 
+`iDEA` identifies and quantitatively infers the presence of CNV and LOH events in single cells using allele and normalized expression information from single-cell RNA-seq data. In this tutorial, we will use `HoneyBADGER` to detect CNVs in glioblastoma tumor cells from patient MGH31 from [Patel et al](http://science.sciencemag.org/content/344/6190/1396). The single-cell RNA-seq data has been prepared for you and is included in the `HoneyBADGER` package. 
 
 First, load the gene expression matrices for tumor cells along with a normal expression reference derived from averaging normal brain samples found in [GTex](https://www.gtexportal.org/home/). Also load a corresponding biomaRt instance (for human) to obtain chromosomal coordinate information for our genes. 
 
