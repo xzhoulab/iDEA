@@ -29,7 +29,7 @@ A2M       8.671972e-06 0.002353646
 ```
 The summary statistics file is required `data.frame` format with row names, while the header is allowed but not required.
 
-### 2. Gene specific annotations from public databases (i.e., KEGG, Reactome, etc.), e.g.,
+### 2. Gene specific annotations from public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.), e.g.,
 ```
       annot1  annot2
 A1BG     0      1
