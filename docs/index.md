@@ -123,12 +123,13 @@ idea <- iDEA.fit(idea) ## model fitting
 ```
 
 ### 3. Correct p-values
-iDEA uses [Louis method](https://www.jstor.org/stable/2345828) to compute calibrated p-values for testing gene set enrichment, while simultaneously producing powerful posterior probability estimates for each gene being DE. The results are stored in `idea@louis`.
+iDEA utilizes [Louis method](https://www.jstor.org/stable/2345828) to compute calibrated p-values for testing gene set enrichment, while simultaneously producing powerful posterior probability estimates for each gene being DE. The results are stored in `idea@louis`.
 
 ```r
 idea <- LouisCorrect(idea) ## 
 ```
 
 ```
-## ...
+## Louis method correcting ...
+|======================================                                       | 50%
 ```
