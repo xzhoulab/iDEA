@@ -62,7 +62,7 @@ head(summary)
 ```
 
 ```r
-head(annotation[,1:5])
+head(annotation[,1:3])
 ```
 
 ### 2. Create an `iDEA` object
@@ -87,7 +87,7 @@ head(idea@summary)
 ```
 
 ```r
-head(idea@annotation[,1:5])
+head(idea@annotation[,1:3])
 ```
 ```
 ##           GO_CELLULAR_RESPONSE_TO_LIPID GO_SECRETION_BY_CELL
