@@ -114,7 +114,12 @@ idea <- iDEA.fit(idea) ## model fitting
 ```
 
 ```
-##  ... Done!
+## ===== iDEA INPUT SUMMARY ==== ##
+## number of annotations:  109 
+## number of genes:  13069 
+## number of cores:  10 
+## fitting the alternative model ... 
+  |======================================                                       |  50%, ETA 03:30
 ```
 
 ### 3. Correct p-values
