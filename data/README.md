@@ -1,7 +1,7 @@
-Toy example:
+## Toy example:
 summary statistics
 annotations
 
-Annotations:
+## Annotations:
 human annotations
 mouse annotations
