@@ -19,3 +19,6 @@ How to cite `iDEA`
 -------------------
 Shiquan Sun, Ying Ma, Mengjie Chen and Xiang Zhou. *Integrative differential expression and gene set enrichment analysis for single cell RNAseq studies*, BioRxiv, 2019. 
 
+How to use `iDEA`
+-------------------
+Details in [here](https://xzhoulab.github.io/iDEA/)
