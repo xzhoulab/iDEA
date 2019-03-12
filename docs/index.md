@@ -55,19 +55,19 @@ The example data can be download [here](https://github.com/xzhoulab/iDEA/blob/ma
 
 ```r
 load("./summary.RData")
-head(summary)
+head(summary_data)
 ```
 
 ```r
 load(./annotation.RData")
-head(annotation[,1:3])
+head(annotation_data[,1:3])
 ```
 
 ### 2. Create an `iDEA` object
 We encourage the user uses `num_core` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
 
 ```r
-idea <- CreateiDEAObject(summary, annotation, num_core=10)
+idea <- CreateiDEAObject(summary_data, annotation_data, num_core=10)
 ```
 The data are stored in `idea@summary` and `idea@annotation`.
 ```r
@@ -113,10 +113,10 @@ idea <- iDEA.fit(idea) ## model fitting
 
 ```
 ## ===== iDEA INPUT SUMMARY ==== ##
-## number of annotations:  109 
-## number of genes:  13069 
+## number of annotations:  369 
+## number of genes:  15280 
 ## number of cores:  10 
-## fitting the alternative model ... 
+## fitting the model with annotation ... 
   |======================================                                       |  50%, ETA 03:30
 ```
 
@@ -130,4 +130,8 @@ idea <- LouisCorrect(idea) ##
 ```
 ## Louis method correcting ...
 |======================================                                       | 50%
+```
+
+```
+head(idea@louis)
 ```
