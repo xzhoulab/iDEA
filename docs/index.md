@@ -30,7 +30,7 @@ A1BG-AS1 -2.173872e-03 0.008438381
 A2M       8.671972e-06 0.002353646
 ...
 ```
-The summary statistics file is required `data.frame` data format with row names, while the header is allowed but not required.
+The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene.
 
 ### 2. Gene specific annotations,  e.g.,
 ```
@@ -54,9 +54,9 @@ library(iDEA)
 ``` 
 
 ### 1. Load summary statistics and annotations
-In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
+In this tutorial, we will apply `iDEA` on a sample data from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x) to detect DE genes and enriched pathways. The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. The row names of annotation file should match exactly with row names of summary statistics and should be in the same type, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
 
-The example data can be download [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
+The example data can be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
 
 Load summary data,
 ```r
@@ -97,7 +97,7 @@ head(annotation_data[,1:3])
 ```
 
 ### 2. Create an `iDEA` object
-We encourage the user uses `num_core` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
+We encourage the user set `num_core > 1` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
 
 ```r
 idea <- CreateiDEAObject(summary_data, annotation_data, num_core=10)
