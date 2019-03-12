@@ -51,11 +51,7 @@ library(iDEA)
 ### 1. Load summary statistics and annotations
 In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x). The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. The row names of annotation file are required to have the same type as the row names of summary statistics file, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
 
-
-```r
-data(summary) ## summary statistics from zingeR-DEseq2
-data(annotation) ## gene sets
-```
+The example data can be download [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
 
 ```r
 head(summary)
