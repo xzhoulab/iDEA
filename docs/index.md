@@ -118,8 +118,8 @@ idea <- iDEA.fit(idea) ## model fitting
 
 ```
 ## ===== iDEA INPUT SUMMARY ==== ##
-## number of annotations:  369 
-## number of genes:  15280 
+## number of annotations:  100 
+## number of genes:  7636 
 ## number of cores:  10 
 ## fitting the model with annotation ... 
   |======================================                                       |  50%, ETA 03:30
