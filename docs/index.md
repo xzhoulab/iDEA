@@ -43,8 +43,8 @@ A2M      0      0
 The gene specific annotation file is required `data.frame` data format with row names, while the header is allowed but not required.
 
 
-%### 3. Raw counts and traits,
-%Alternatively, raw count matrix and traits are also allowed in iDEA to obtain the summary statistics from the existing differential %expression analysis methods, such as zingeR.
+<!--### 3. Raw counts and traits,
+Alternatively, raw count matrix and traits are also allowed in iDEA to obtain the summary statistics from the existing differential expression analysis methods, such as zingeR. -->
 
 
 ## Getting started
