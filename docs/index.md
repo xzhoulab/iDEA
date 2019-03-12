@@ -65,7 +65,7 @@ head(summary_data)
 ```
 
 ```
-##           beta      beta_var
+##         log2FoldChange      lfcSE2
 ## A1BG      0.90779290 0.25796491
 ## A1CF      0.36390514 0.03568627
 ## A2LD1     0.03688353 0.75242959
