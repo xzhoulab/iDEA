@@ -54,10 +54,12 @@ In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways fr
 The example data can be download [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
 
 ```r
+load("./summary.RData")
 head(summary)
 ```
 
 ```r
+load(./annotation.RData")
 head(annotation[,1:3])
 ```
 
