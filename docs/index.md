@@ -58,14 +58,42 @@ In this tutorial, we will use `iDEA` to detect DE genes and enriched pathways fr
 
 The example data can be download [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
 
+Load summary data,
 ```r
 load("./summary.RData")
 head(summary_data)
 ```
 
+```
+##       log2FoldChange      lfcSE2
+## A1BG      0.90779290 0.25796491
+## A1CF      0.36390514 0.03568627
+## A2LD1     0.03688353 0.75242959
+## A2M       8.54034957 0.40550678
+## AAAS      0.19593275 0.15456908
+## AAK1      2.43579392 0.02828550
+```
+
+Load annotation data,
 ```r
 load("./annotation.RData")
 head(annotation_data[,1:3])
+```
+```
+##           GO_CELLULAR_RESPONSE_TO_LIPID GO_SECRETION_BY_CELL
+## A1BG                              0                    1
+## A1CF                              0                    0
+## A2LD1                             0                    0
+## A2M                               0                    1
+## A2ML1                             0                    0
+## AAAS                              0                    0
+##       GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
+## A1BG                                                 0
+## A1CF                                                 0
+## A2LD1                                                0
+## A2M                                                  0
+## A2ML1                                                0
+## AAAS                                                 0
 ```
 
 ### 2. Create an `iDEA` object
@@ -85,29 +113,17 @@ head(idea@summary)
 ## A1CF      0.36390514 0.03568627
 ## A2LD1     0.03688353 0.75242959
 ## A2M       8.54034957 0.40550678
-## A2ML1    -1.89816441 0.07381843
 ## AAAS      0.19593275 0.15456908
+## AAK1      2.43579392 0.02828550
 ```
 
 ```r
-head(idea@annotation[,1:3])
+head(idea@annotation[[1]])
 ```
 ```
-##           GO_CELLULAR_RESPONSE_TO_LIPID GO_SECRETION_BY_CELL
-## A1BG                              0                    1
-## A1CF                              0                    0
-## A2LD1                             0                    0
-## A2M                               0                    1
-## A2ML1                             0                    0
-## AAAS                              0                    0
-##       GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
-## A1BG                                                 0
-## A1CF                                                 0
-## A2LD1                                                0
-## A2M                                                  0
-## A2ML1                                                0
-## AAAS                                                 0
+##  20 34 45 46 87 99
 ```
+The gene indices which are annotated as 1.
 
 ### 3. Fit the model
 iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. The results are stored in `idea@emmcmc`.
