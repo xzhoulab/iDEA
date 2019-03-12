@@ -30,7 +30,11 @@ A1BG-AS1 -2.173872e-03 0.008438381
 A2M       8.671972e-06 0.002353646
 ...
 ```
-The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene.
+The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. Alternatively, the raw count matrix and their corresponding cell type labels are also allowed in iDEA to obtain the summary statistics if you have no summary data, e.g.,
+
+```
+object <- CreateiDEAObject(annotation=annotation_data,counts=counts,cell_type=cellType)
+```
 
 ### 2. Gene specific annotations,  e.g.,
 ```
@@ -41,10 +45,6 @@ A2M      0      0
 ...
 ```
 The gene specific annotation file is required `data.frame` data format with row names, while the header is allowed but not required.
-
-
-<!--### 3. Raw counts and traits,
-Alternatively, raw count matrix and traits are also allowed in iDEA to obtain the summary statistics from the existing differential expression analysis methods, such as zingeR. -->
 
 
 ## Getting started
