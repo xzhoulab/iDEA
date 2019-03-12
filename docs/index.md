@@ -133,7 +133,8 @@ idea <- LouisCorrect(idea) ##
 ```
 
 ```
-## Louis method correcting ...
+## ===== LOUIS METHOD ==== ##
+## correcting p-values ...
 |======================================                                       | 50%
 ```
 
