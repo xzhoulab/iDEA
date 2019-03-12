@@ -95,7 +95,7 @@ head(summary_data)
 If there are no summary data available, the count matrix and cell types are allowed as inputs to obtain the summary data, e.g.,
 
 ``` 
-object <- CreateiDEAObject(annotation=annotation_data,counts=counts,cell_type=cellType)
+idea <- CreateiDEAObject(annotation=annotation_data,counts=counts,cell_type=cellType)
 ```
 
 ### 2. Create an `iDEA` object
