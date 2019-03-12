@@ -92,7 +92,7 @@ head(summary_data)
 ## AAK1      2.43579392 0.02828550
 ```
 
-If you have no summary data available, the count matrix and cell types are allowed as inputs to obtain the summary data, e.g.,
+If there are no summary data available, the count matrix and cell types are allowed as inputs to obtain the summary data, e.g.,
 
 ``` 
 object <- CreateiDEAObject(annotation=annotation_data,counts=counts,cell_type=cellType)
