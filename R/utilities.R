@@ -85,7 +85,7 @@ CreateiDEAObject <- function(summary=NULL, annotation,
 		summary <- as.data.frame(summary)
 	}# end fi
 	colnames(summary) <- c("beta", "beta_var")
-	keep_index <- summary$beta_var<max_var_beta & !is.na(summary$beta_var)
+	keep_index <- summary$beta_var<max_var_beta & !is.na(summary$beta_var) & summary$beta_var>1e-3
 	summary <- as.data.frame(summary[keep_index,])
 	
 	if(!is.data.frame(annotation)){
