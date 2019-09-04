@@ -1,8 +1,8 @@
 # following https://github.com/jekyll/minima
 title: iDEA
-author: Shiquan Sun, Ying Ma and Xiang Zhou
+author: Shiquan Sun
 email: xzhousph@umich.edu
-description: Integrative Differential Expression and Gene Set Enrichment Analysis for Single Cell RNAseq Studies
+description: Integrative Differential Expression and Gene Set Enrichment Analysis Using Summary Statistics for Single Cell RNAseq Studies
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
