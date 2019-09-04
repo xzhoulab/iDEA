@@ -17,7 +17,7 @@ library(iDEA)
 
 How to cite `iDEA`
 -------------------
-Shiquan Sun, Ying Ma, Mengjie Chen and Xiang Zhou. *Integrative differential expression and gene set enrichment analysis using summary statistics for single cell RNAseq studies*, 2019. 
+Shiquan Sun, Ying Ma, Xuequn Shang, Evan T. Keller, Mengjie Chen and Xiang Zhou#. *Integrative differential expression and gene set enrichment analysis using summary statistics for single cell RNAseq studies*, 2019. 
 
 How to use `iDEA`
 -------------------
