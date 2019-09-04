@@ -1,6 +1,6 @@
 # iDEA
 
-Integrative Differential expression and gene set Enrichment Analysis for single cell RNAseq studies 
+Integrative Differential expression and gene set Enrichment Analysis Using Summary Statistics for single cell RNAseq studies 
 
 Installation
 ------------
@@ -17,7 +17,7 @@ library(iDEA)
 
 How to cite `iDEA`
 -------------------
-Shiquan Sun, Ying Ma, Mengjie Chen and Xiang Zhou. *Integrative differential expression and gene set enrichment analysis for single cell RNAseq studies*, BioRxiv, 2019. 
+Shiquan Sun, Ying Ma, Mengjie Chen and Xiang Zhou. *Integrative differential expression and gene set enrichment analysis using summary statistics for single cell RNAseq studies*, 2019. 
 
 How to use `iDEA`
 -------------------
