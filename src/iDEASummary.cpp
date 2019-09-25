@@ -41,7 +41,7 @@ void Mstep(mat A, vec POST_gamma, vec &tau, vec &var_coef, mat &J, vec sigma2_e,
 	vec tau_old = tau;
 	size_t true_iter = 1;
 	//mat J = zeros<mat>( tau.n_elem, tau.n_elem );
-	int nr_iter = 10; // maximum iteration of newton raphson
+	size_t nr_iter = 10; // maximum iteration of newton raphson
 	while (true_iter)
 	{
 		vec pi = exp(A * tau_old) / (1 + exp(A * tau_old));
