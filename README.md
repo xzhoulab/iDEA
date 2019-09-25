@@ -1,6 +1,6 @@
 # iDEA
 
-Integrative Differential expression and gene set Enrichment Analysis Using Summary Statistics for single cell RNAseq studies 
+Integrative Differential expression and gene set Enrichment Analysis using summary statistics for single cell RNAseq studies 
 
 System requirements
 --------------------
