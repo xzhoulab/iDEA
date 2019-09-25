@@ -1,9 +1,9 @@
 ## Toy example:
-summary statistics
+Summary statistics
 
 annotations
 
 ## Annotations:
-human annotations
+Annotations for human data analysis
 
-mouse annotations
+Annotations for mouse data analysis
