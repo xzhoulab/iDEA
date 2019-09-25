@@ -9,7 +9,7 @@ This package is supported for Windows 10, MAC and Linux. The package has been te
 - MAC: OSX (10.14.1)
 - Linux: Ubuntu (16.04.6)
 
-Dependencies
+Dependencies (r packages)
 -------------
 - Rcpp (>= 1.0.0) 
 - doParallel (>=1.0.15) 
