@@ -12,10 +12,10 @@ Linux: Ubuntu (16.04.6)
 Dependencies
 -------------
 Rcpp (>= 1.0.0) 
-doParallel (>=1.0.15)
-doSNOW (>=1.0.15)
-foreach (>=1.4.4)
-parallel (>=3.6.1)
+doParallel (>=1.0.15) 
+doSNOW (>=1.0.15) 
+foreach (>=1.4.4) 
+parallel (>=3.6.1) 
 
 
 Installation
