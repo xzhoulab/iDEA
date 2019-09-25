@@ -4,7 +4,7 @@ Integrative Differential expression and gene set Enrichment Analysis Using Summa
 
 System requirements
 --------------------
-This package is supported for Windows, macOS and Linux. The package has been tested on the following systems:
+This package is supported for Windows, MAC and Linux. The package has been tested on the following systems:
 - Windows: Home (1903)
 - MAC: OSX (10.14.1)
 - Linux: Ubuntu (16.04.6)
