@@ -1,7 +1,7 @@
 ## Toy example:
-Summary statistics
-
-annotations
+Two types of data are required in iDEA 
+- Summary statistics
+- annotations
 
 ## Annotations:
 Annotations for human data analysis
