@@ -5,17 +5,17 @@ Integrative Differential expression and gene set Enrichment Analysis Using Summa
 System requirements
 --------------------
 This package is supported for Windows, macOS and Linux. The package has been tested on the following systems:
-Windows: Home (1903)
-MAC: OSX (10.14.1)
-Linux: Ubuntu (16.04.6)
+- Windows: Home (1903)
+- MAC: OSX (10.14.1)
+- Linux: Ubuntu (16.04.6)
 
 Dependencies
 -------------
-Rcpp (>= 1.0.0) 
-doParallel (>=1.0.15) 
-doSNOW (>=1.0.15) 
-foreach (>=1.4.4) 
-parallel (>=3.6.1) 
+- Rcpp (>= 1.0.0) 
+- doParallel (>=1.0.15) 
+- doSNOW (>=1.0.15) 
+- foreach (>=1.4.4) 
+- parallel (>=3.6.1) 
 
 
 Installation
