@@ -1,6 +1,6 @@
 ####################################################################################################
 ## Package : iDEA
-## Version : 1.0.0
+## Version : 1.0.1
 ## Date    : 2019-2-4 14:31:30
 ## Modified: 2019-9-25 21:17:54
 ## Title   : Integrative Differential Expression and Gene Set Enrichment Analysis
@@ -272,7 +272,7 @@ iDEA.louis <- function(object){
 		Annot <- rep(0, object@num_gene)
 		Annot[object@annotation[[i]]] <- 1
 		Annot <- Annot - mean(Annot)
-		Annot <- as.matrix(data.frame(rep(1, num_gene), Annot) )
+		Annot <- as.matrix(data.frame(rep(1, object@num_gene), Annot) )
 		##################
 		## Louis function
 		LouisMethod <- function(res, A){
