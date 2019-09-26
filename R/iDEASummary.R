@@ -269,9 +269,13 @@ iDEA.louis <- function(object){
 	# parallel
 	res_all <- foreach(i=1:num_annot, .combine=rbind, .options.snow=opts) %dopar% {
 		res <- object@de[[i]]
+		Annot <- rep(0, object@num_gene)
+		Annot[object@annotation[[i]]] <- 1
+		Annot <- Annot - mean(Annot)
+		Annot <- as.matrix(data.frame(rep(1, num_gene), Annot) )
 		##################
 		## Louis function
-		LouisMethod <- function(res){
+		LouisMethod <- function(res, A){
 			numer <- (1-res$pip)*res$pip*pnorm(res$beta, mean=0, sd=sqrt(res$sigma2_beta1*res$sigma2_e))*pnorm(res$beta, mean=0, sd=sqrt(res$sigma2_beta2*res$sigma2_e))
 
 			denom <- res$pip*pnorm(res$beta, mean=0, sd=sqrt(res$sigma2_beta1*res$sigma2_e)) + 
@@ -279,10 +283,10 @@ iDEA.louis <- function(object){
 	
 			# define missing information matrix
 			T <- matrix(0, ncol=2, nrow=2)
-			T[1,1] <- sum( as.numeric((numer/denom^2) * res$A[,1]*res$A[,1] ) )
-			T[1,2] <- sum( as.numeric((numer/denom^2) * res$A[,1]*res$A[,2] ) )
-			T[2,1] <- sum( as.numeric((numer/denom^2) * res$A[,1]*res$A[,2] ) )
-			T[2,2] <- sum( as.numeric((numer/denom^2) * res$A[,2]*res$A[,2] ) )
+			T[1,1] <- sum( as.numeric((numer/denom^2) * A[,1]*A[,1] ) )
+			T[1,2] <- sum( as.numeric((numer/denom^2) * A[,1]*A[,2] ) )
+			T[2,1] <- sum( as.numeric((numer/denom^2) * A[,1]*A[,2] ) )
+			T[2,2] <- sum( as.numeric((numer/denom^2) * A[,2]*A[,2] ) )
 	
 			annot_var <- diag( solve(res$info_mat - T) )
 			# return the results
@@ -291,7 +295,7 @@ iDEA.louis <- function(object){
 		#################
 		
 		if(abs(res$annot_coef[2])<5 & !is.na(res$annot_coef[2]) ){
-			try_test <- try( louis_var <- LouisMethod(res), silent=T)
+			try_test <- try( louis_var <- LouisMethod(res, Annot), silent=T)
 			if(class(try_test)=="try-error"){
 				print("try-error!")
 			}else{
