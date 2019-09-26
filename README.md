@@ -12,6 +12,7 @@ This package is supported for Windows 10, MAC and Linux. The package has been te
 Dependencies (r packages)
 -------------
 - Rcpp (>= 1.0.0) 
+- RcppArmadillo (>=0.9.400.2)
 - doParallel (>=1.0.15) 
 - doSNOW (>=1.0.15) 
 - foreach (>=1.4.4) 
