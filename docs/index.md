@@ -30,7 +30,8 @@ A1BG-AS1 -2.173872e-03 0.008438381
 A2M       8.671972e-06 0.002353646
 ...
 ```
-The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. Alternatively, the raw count matrix and their corresponding cell type labels are also allowed in iDEA to obtain the summary statistics if you have no summary data.
+The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. 
+#Alternatively, the raw count matrix and their corresponding cell type labels are also allowed in iDEA to obtain the #summary statistics if you have no summary data.
 
 ### 2. Gene specific annotations,  e.g.,
 ```
@@ -128,7 +129,7 @@ head(idea@annotation[[1]])
 The gene indices which are annotated as 1.
 
 ### 3. Fit the model
-iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. The results are stored in `idea@emmcmc`.
+iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. The results are stored in `idea@de`.
 
 ```r
 idea <- iDEA.fit(idea) ## model fitting
@@ -144,18 +145,16 @@ idea <- iDEA.fit(idea) ## model fitting
 ```
 
 ### 3. Correct p-values
-iDEA utilizes [Louis method](https://www.jstor.org/stable/2345828) to compute calibrated p-values for testing gene set enrichment, while simultaneously producing powerful posterior probability estimates for each gene being DE. The results are stored in `idea@louis`.
+iDEA utilizes [Louis method](https://www.jstor.org/stable/2345828) to compute calibrated p-values for testing gene set enrichment, while simultaneously producing powerful posterior probability estimates for each gene being DE. The results are stored in `idea@gsea`.
 
 ```r
 idea <- iDEA.louis(idea) ## 
 ```
 
 ```
-## ===== LOUIS METHOD ==== ##
-## correcting p-values ...
 |======================================                                       | 50%
 ```
 
 ```
-head(idea@louis)
+head(idea@gsea)
 ```
