@@ -31,7 +31,7 @@ A2M       8.671972e-06 0.002353646
 ...
 ```
 The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. 
-#Alternatively, the raw count matrix and their corresponding cell type labels are also allowed in iDEA to obtain the #summary statistics if you have no summary data.
+
 
 ### 2. Gene specific annotations,  e.g.,
 ```
