@@ -3,7 +3,7 @@
 ## Version : 1.0.1
 ## Date    : 2019-2-4 14:31:30
 ## Modified: 2019-10-8 16:27:34
-## Title   : Integrative Differential Expression and Gene Set Enrichment Analysis
+## Title   : Integrative Differential Expression and Gene Set Enrichment Analysis Using Summary Statistics
 ## Authors : Shiquan Sun
 ## Contacts: shiquans@umich.edu
 ##           University of Michigan, Department of Biostatistics
