@@ -306,13 +306,16 @@ iDEA.louis <- function(object){
 	close(pb)
 	stopCluster(cl) 
 
-	# remove the negative variance genes
+	## remove the negative variance genes
 	pos_index <- which(res_all$annot_var_louis>0)
 	zscore <- res_all$annot_coef[pos_index]/sqrt(res_all$annot_var[pos_index])
 	zscore_louis <- res_all$annot_coef[pos_index]/sqrt( res_all$annot_var_louis[pos_index] )
+	
+	res_all <- res_all[pos_index, ]
 	res_all$pvalue_louis <- 2*pnorm(-abs(zscore_louis))
 	res_all$pvalue <- 2*pnorm(-abs(zscore))
 	
+	## only keep positive variance corrected by louis method
 	object@gsea <- res_all
 	rm(res_all)
 	# return the results
