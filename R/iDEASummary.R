@@ -252,11 +252,13 @@ iDEAWeight.fit <- function(object,
 iDEA.louis <- function(object){
 	num_core <- object@num_core
 	
-	# using parallel to correct
+	## using parallel to correct
 	#library(doSNOW)
 	if(num_core > 1){
 		if(num_core > detectCores()){warning("LOUIS:: the number of cores you're setting is larger than detected cores!");num_core = detectCores()}
 	}#end fi
+	## modified here if need parallel, by default num_core=1 
+	num_core <- 1
 	cl <- makeCluster(num_core)
 	registerDoSNOW(cl)
 	num_annot <- length(object@de)
