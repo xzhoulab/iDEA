@@ -46,7 +46,8 @@ void Mstep(mat A, vec POST_gamma, vec &tau, vec &var_coef, mat &J, vec sigma2_e,
 	{
 		vec pi = exp(A * tau_old) / (1 + exp(A * tau_old));
 		J = A.t() * diagmat(pi % (1 - pi)) * A;
-		tau = tau + inv_sympd(J) * (A.t() * (POST_gamma - pi));
+		//tau = tau + inv_sympd(J) * (A.t() * (POST_gamma - pi));
+		tau = tau + pinv(J) * (A.t() * (POST_gamma - pi));
 		if (arma::norm(tau_old - tau) < 1e-03 || (++true_iter) > nr_iter)
 		{
 			break;
@@ -58,7 +59,8 @@ void Mstep(mat A, vec POST_gamma, vec &tau, vec &var_coef, mat &J, vec sigma2_e,
 	}// end while
 	//exit(1);
 	// the variance of annotation
-	mat inv_J = inv_sympd(J);
+	//mat inv_J = inv_sympd(J);
+	mat inv_J = pinv(J);
 	var_coef = inv_J.diag();
 
 } // end function
