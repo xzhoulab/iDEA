@@ -17,9 +17,15 @@ variant: markdown_github
 
 ![iDEA\_pipeline](MethodPipline.png)
 
-## Preparing input data
-------------
+Overview
+--------
 
+iDEA: Integrative Differential expression and gene set Enrichment Analysis using summary statistics for single cell RNAseq studies 
+
+We developed a new computational method, iDEA, that enables powerful DE and GSE analysis for scRNAseq studies through integrative statistical modeling. Our method builds upon a hierarchical Bayesian model for joint modeling of DE and GSE analyses. It uses only summary statistics as input, allowing for effective data modeling through complementing and pairing with various existing DE methods. It relies on an efficient expectation-maximization algorithm with internal Markov Chain Monte Carlo steps for scalable inference. By integrating DE and GSE analyses, iDEA can improve the power and consistency of DE analysis and the accuracy of GSE analysis over common existing approaches. iDEA is implemented as an R package with source code freely available at: www.xzlab.org/software.html. 
+
+## Require input data
+------------
 `iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their variances as inputs, which can be obtained using any existing single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Also `iDEA` requires a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.). With DE test statistics as inputs, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis.
 
 ### 1. Summary statistics, e.g.,
@@ -30,7 +36,7 @@ A1BG-AS1 -2.173872e-03 0.008438381
 A2M       8.671972e-06 0.002353646
 ...
 ```
-The summary statistics file should be in  `data.frame` data format with row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. 
+The summary statistics file should be in  `data.frame` data format with gene name as row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. 
 
 
 ### 2. Gene specific annotations,  e.g.,
@@ -41,8 +47,32 @@ A1BG-AS1 1      0
 A2M      0      0
 ...
 ```
-The gene specific annotation file is required `data.frame` data format with row names, while the header is allowed but not required.
+The gene specific annotation file is required `data.frame` data format with gene name as row names, while the header is the gene specific annotation name. The row names of annotation file should match exactly with row names of summary statistics and should be in the same type, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
 
+We have provided both human gene sets and mouse gene sets in our package. Specifically, for human gene sets, we compiled seven exsiting gene set/pathway databases annotated on the reference genome GRCh37 from MSigDB databases (http://software.broadinstitute.org/gsea/downloads.jsp). These databases include BioCarta, KEGG, GO, PubChem Compound, ImmuneSigDB, PID and Reactome. For mouse gene sets, we downloaded the gene ontology (GO) annotations of mouse genes in the GAF 2.0 format from the website (http://www.informatics.jax.org/downloads/reports/index.html#go). 
+
+These human gene sets and mouse gene sets can be loaded from our package, i.e
+
+```
+data(humanGeneSets)
+humanGeneSets[1:3,1:3]
+       NAKAMURA_CANCER_MICROENVIRONMENT_UP NAKAMURA_CANCER_MICROENVIRONMENT_DN
+MEF2C                                    0                                   0
+ATP1B1                                   0                                   0
+RORA                                     0                                   0
+       WEST_ADRENOCORTICAL_TUMOR_MARKERS_UP
+MEF2C                                     0
+ATP1B1                                    0
+RORA                                      0
+
+data(mouseGeneSets)
+mouseGeneSets[1:3,1:3]
+           GO:0000002 GO:0000003 GO:0000009
+MGI:101757          0          0          0
+MGI:101758          0          0          0
+MGI:101759          0          0          0
+```
+The organized gene sets can also be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for human gene sets, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for mouse gene sets.
 
 ## Getting started
 -------------
@@ -51,13 +81,29 @@ library(iDEA)
 ``` 
 
 ### 1. Load summary statistics and annotations
-In this tutorial, we will apply `iDEA` on a sample data from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x) to detect DE genes and enriched pathways. The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. The row names of annotation file should match exactly with row names of summary statistics and should be in the same type, i.e. gene symbol or transcription id etc. If not, one solution is to use `biomaRt` R package to convert the gene name to make sure they are consistent each other.
+In this tutorial, we will apply `iDEA` on a sample data from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x) to detect DE genes and enriched pathways. The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. 
 
-The example data can be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
+The example data can also be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
+
+Load summary data,
+```r
+data(summary_data)
+head(summary_data)
+```
+
+```
+##         log2FoldChange      lfcSE2
+## A1BG      0.90779290 0.25796491
+## A1CF      0.36390514 0.03568627
+## A2LD1     0.03688353 0.75242959
+## A2M       8.54034957 0.40550678
+## A2ML1    -1.89816441 0.07381843
+## AAAS      0.19593275 0.15456908
+```
 
 Load annotation data,
 ```r
-load("./annotation.RData")
+data(annotation_data)
 head(annotation_data[,1:3])
 ```
 ```
@@ -76,29 +122,6 @@ head(annotation_data[,1:3])
 ## A2ML1                                                0
 ## AAAS                                                 0
 ```
-
-Load summary data,
-```r
-load("./summary.RData")
-head(summary_data)
-```
-
-```
-##         log2FoldChange      lfcSE2
-## A1BG      0.90779290 0.25796491
-## A1CF      0.36390514 0.03568627
-## A2LD1     0.03688353 0.75242959
-## A2M       8.54034957 0.40550678
-## AAAS      0.19593275 0.15456908
-## AAK1      2.43579392 0.02828550
-```
-
-If there are no summary data available, the count matrix and cell types are allowed as inputs to obtain the summary data, e.g.,
-
-``` 
-idea <- CreateiDEAObject(annotation=annotation_data,counts=counts,cell_type=cellType)
-```
-
 ### 2. Create an `iDEA` object
 We encourage the user set `num_core > 1` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
 
@@ -116,17 +139,17 @@ head(idea@summary)
 ## A1CF      0.36390514 0.03568627
 ## A2LD1     0.03688353 0.75242959
 ## A2M       8.54034957 0.40550678
+## A2ML1 -1.89816441 0.07381843
 ## AAAS      0.19593275 0.15456908
-## AAK1      2.43579392 0.02828550
 ```
 
 ```r
 head(idea@annotation[[1]])
 ```
 ```
-##  20 34 45 46 87 99
+##  7 23 36 58 70 80
 ```
-The gene indices which are annotated as 1.
+The gene indices which are annotated as 1 in the first gene set GO_CELLULAR_RESPONSE_TO_LIPID in our example annotation_data.
 
 ### 3. Fit the model
 iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. The results are stored in `idea@de`.
