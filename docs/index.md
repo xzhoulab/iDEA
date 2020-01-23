@@ -139,7 +139,7 @@ head(idea@summary)
 ## A1CF      0.36390514 0.03568627
 ## A2LD1     0.03688353 0.75242959
 ## A2M       8.54034957 0.40550678
-## A2ML1 -1.89816441 0.07381843
+## A2ML1    -1.89816441 0.07381843
 ## AAAS      0.19593275 0.15456908
 ```
 
@@ -152,22 +152,22 @@ head(idea@annotation[[1]])
 The gene indices which are annotated as 1 in the first gene set GO_CELLULAR_RESPONSE_TO_LIPID in our example annotation_data.
 
 ### 3. Fit the model
-iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. The results are stored in `idea@de`.
+iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. 
 
 ```r
 idea <- iDEA.fit(idea) ## model fitting
 ```
-
 ```
 ## ===== iDEA INPUT SUMMARY ==== ##
 ## number of annotations:  100 
-## number of genes:  7636 
+## number of genes:  15280 
 ## number of cores:  10 
-## fitting the model with annotation ... 
-  |======================================                                       |  50%, ETA 03:30
+## fitting the model with gene sets information... 
+  |======================================                                       |  50%, ETA 6:30
 ```
+The results are stored in `idea@de`. 
 
-### 3. Correct p-values
+### 4. Correct p-values
 iDEA utilizes [Louis method](https://www.jstor.org/stable/2345828) to compute calibrated p-values for testing gene set enrichment, while simultaneously producing powerful posterior probability estimates for each gene being DE. The results are stored in `idea@gsea`.
 
 ```r
@@ -175,9 +175,64 @@ idea <- iDEA.louis(idea) ##
 ```
 
 ```
-|======================================                                       | 50%
+|======================================                                          | 50%
 ```
 
-```
+### 5. Output from iDEA
+GSE results from iDEA, with the pvalue for each gene set we tested. 
+```r
 head(idea@gsea)
+                                          annot_id annot_coef  annot_var
+1                    GO_CELLULAR_RESPONSE_TO_LIPID  0.3027478 0.01092657
+2                             GO_SECRETION_BY_CELL  0.4859054 0.01033529
+3 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY  0.3336516 0.01845992
+4            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH  0.8121364 0.01726227
+5        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS  0.2872340 0.01746749
+6                  GO_ACTIN_FILAMENT_BASED_PROCESS  0.7777092 0.01047519
+  annot_var_louis sigma2_b                                       annot_name
+1      0.01538656 37.36870                    GO_CELLULAR_RESPONSE_TO_LIPID
+2      0.01472967 37.37070                             GO_SECRETION_BY_CELL
+3      0.02642261 37.32962 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
+4      0.02498227 37.39005            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH
+5      0.02443468 37.39202        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS
+6      0.01490473 37.36660                  GO_ACTIN_FILAMENT_BASED_PROCESS
+  pvalue_louis       pvalue
+1 1.465978e-02 3.776272e-03
+2 6.237465e-05 1.756546e-06
+3 4.011091e-02 1.406038e-02
+4 2.773468e-07 6.357428e-10
+5 6.613285e-02 2.975739e-02
+6 1.887443e-10 2.992406e-14
 ```
+iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
+
+```r
+names(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]) 
+ [1] "beta"         "sigma2_beta"  "annot_coef"   "annot_var"    "pip"
+ [6] "sigma2_e"     "info_mat"     "converged"    "ctime"
+### posterior inclusion probability of a gene being DE gene.
+pip = idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip 
+```
+Certainly, sometimes it may not be easy to identify such pre-selected gene set for certain data sets. In the absence of pre-selected gene set, we developed a Bayesian model averaging (BMA) approach to aggregate DE evidence for any given genes across all available gene sets without the requirement of pre-selecting a gene set. See 6. Bayesian model averaging (BMA) approach. 
+
+### 6. Bayesian model averaging (BMA)
+
+Here, we looked at the posterior inclusion probability (PIPs) for each gene infered by Bayesian model averaging (BMA) approach. 
+
+```r
+idea <- iDEA.louis(idea) ## 
+```
+
+### 7. iDEA variant model
+iDEA is mainly focusing on modeling the marginal effect size estimates and standard errors from DE analysis, which is equivalent to modeling of marginal z-scores. We also provide a variant of iDEA which models the cofficient of gene directly. 
+
+```r
+idea <- iDEA.louis(idea,modelVariant = T) ## 
+```
+
+
+
+
+
+
+
