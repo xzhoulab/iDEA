@@ -183,26 +183,20 @@ GSE results from iDEA, with the pvalue for each gene set we tested.
 ```r
 head(idea@gsea)
                                           annot_id annot_coef  annot_var
-1                    GO_CELLULAR_RESPONSE_TO_LIPID  0.3027478 0.01092657
-2                             GO_SECRETION_BY_CELL  0.4859054 0.01033529
-3 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY  0.3336516 0.01845992
-4            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH  0.8121364 0.01726227
-5        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS  0.2872340 0.01746749
-6                  GO_ACTIN_FILAMENT_BASED_PROCESS  0.7777092 0.01047519
-  annot_var_louis sigma2_b                                       annot_name
-1      0.01538656 37.36870                    GO_CELLULAR_RESPONSE_TO_LIPID
-2      0.01472967 37.37070                             GO_SECRETION_BY_CELL
-3      0.02642261 37.32962 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
-4      0.02498227 37.39005            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH
-5      0.02443468 37.39202        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS
-6      0.01490473 37.36660                  GO_ACTIN_FILAMENT_BASED_PROCESS
-  pvalue_louis       pvalue
-1 1.465978e-02 3.776272e-03
-2 6.237465e-05 1.756546e-06
-3 4.011091e-02 1.406038e-02
-4 2.773468e-07 6.357428e-10
-5 6.613285e-02 2.975739e-02
-6 1.887443e-10 2.992406e-14
+1                    GO_CELLULAR_RESPONSE_TO_LIPID  0.3086188 0.01092418
+2                             GO_SECRETION_BY_CELL  0.4801154 0.01033262
+3 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY  0.3298603 0.01846143
+4            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH  0.8185382 0.01728740
+5        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS  0.2942673 0.01746244
+6                  GO_ACTIN_FILAMENT_BASED_PROCESS  0.7716152 0.01046456
+  annot_var_louis sigma2_b pvalue_louis       pvalue
+1      0.01607571 37.34123 1.492913e-02 3.149486e-03
+2      0.01504002 37.38134 9.043945e-05 2.321128e-06
+3      0.02778457 37.35269 4.782504e-02 1.519437e-02
+4      0.02595835 37.38401 3.765826e-07 4.800278e-10
+5      0.02557512 37.38573 6.575866e-02 2.595777e-02
+6      0.01556261 37.38101 6.199137e-10 4.595172e-14
+
 ```
 iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
 
@@ -210,20 +204,20 @@ iDEA analyzes one gene set at a time, and perform the integrative differential e
 ### gene set coefficient estimate, tau_1 is the intercept, and tau_2 is the coefficient
 idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$annot_coef
       annot_coef
-tau_1 -0.3580584. 
-tau_2  0.3235297
+tau_1 -0.3570081
+tau_2  0.3320596
 
 ### posterior inclusion probability of a gene being DE gene.
 pip = unlist(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip)
 ### head the posterior inclusion probability and order by decreasing. 
 head(pip)
         PIP
-A1BG  0.185
-A1CF  0.130
-A2LD1 0.065
+A1BG  0.195
+A1CF  0.120
+A2LD1 0.080
 A2M   1.000
 A2ML1 1.000
-AAAS  0.065
+AAAS  0.060
 ```
 Certainly, sometimes it may not be easy to identify such pre-selected gene set for certain data sets. In the absence of pre-selected gene set, we developed a Bayesian model averaging (BMA) approach to aggregate DE evidence for any given genes across all available gene sets without the requirement of pre-selecting a gene set. See 6. Bayesian model averaging (BMA) approach. 
 
@@ -235,12 +229,12 @@ Here, we looked at the posterior inclusion probability (PIPs) for each gene infe
 idea <- iDEA.BMA(idea) ##
 head(idea@BMA_pip)
          BMA_pip
-A1BG  0.21618072
-A1CF  0.11304356
-A2LD1 0.08669322
+A1BG  0.21635704
+A1CF  0.11666890
+A2LD1 0.09071130
 A2M   1.00000000
 A2ML1 1.00000000
-AAAS  0.04528599
+AAAS  0.04992091
 ```
 The BMA approach yields consistent results for the majority of genes as compared to the pre-selection approach.
 
@@ -251,7 +245,7 @@ iDEA is mainly focusing on modeling the marginal effect size estimates and stand
 idea_variant <- iDEA.fit(idea,modelVariant = T) ## 
 |======================================                                       |  50%, ETA 6:47
 idea_variant <- iDEA.louis(idea_variant) 
-|======================================                                          | 50%
+|======================================                                       | 50%
 ###
 ```
 The results format of using iDEA variant model and iDEA are the same. 
@@ -260,7 +254,9 @@ The results format of using iDEA variant model and iDEA are the same.
 Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. 
 
 ```r
-idea_null <- iDEA.fit.null (idea) ## 
-head(idea_null)
+idea <- CreateiDEAObject(summary_data, annotation_data[,c(1:10)], num_core=10)
+idea <- iDEA.fit.null(idea) ## 
+idea <- iDEA.louis(idea) 
+head(idea@gsea)
 ###
 ```
