@@ -41,7 +41,7 @@ The summary statistics file should be in  `data.frame` data format with gene nam
 
 ### 2. Gene specific annotations,  e.g.,
 ```
-          annot1  annot2
+         annot1 annot2
 A1BG     0      1
 A1BG-AS1 1      0
 A2M      0      0
@@ -207,14 +207,23 @@ head(idea@gsea)
 iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
 
 ```r
-names(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]) 
- [1] "beta"         "sigma2_beta"  "annot_coef"   "annot_var"    "pip"
- [6] "sigma2_e"     "info_mat"     "converged"    "ctime"
-### posterior inclusion probability of a gene being DE gene.
-pip = idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip 
-### head the posterior inclusion probability and order by decreasing. 
-head(pip[order(pip,decreasing = T)])
+### gene set coefficient estimate, tau_1 is the intercept, and tau_2 is the coefficient
+idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$annot_coef
+      annot_coef
+tau_1 -0.3580584. 
+tau_2  0.3235297
 
+### posterior inclusion probability of a gene being DE gene.
+pip = unlist(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip)
+### head the posterior inclusion probability and order by decreasing. 
+head(pip)
+        PIP
+A1BG  0.185
+A1CF  0.130
+A2LD1 0.065
+A2M   1.000
+A2ML1 1.000
+AAAS  0.065
 ```
 Certainly, sometimes it may not be easy to identify such pre-selected gene set for certain data sets. In the absence of pre-selected gene set, we developed a Bayesian model averaging (BMA) approach to aggregate DE evidence for any given genes across all available gene sets without the requirement of pre-selecting a gene set. See 6. Bayesian model averaging (BMA) approach. 
 
@@ -223,15 +232,26 @@ Certainly, sometimes it may not be easy to identify such pre-selected gene set f
 Here, we looked at the posterior inclusion probability (PIPs) for each gene infered by Bayesian model averaging (BMA) approach. 
 
 ```r
-idea <- iDEA.louis(idea) ## 
+idea <- iDEA.BMA(idea) ##
+head(idea@BMA_pip)
+         BMA_pip
+A1BG  0.21618072
+A1CF  0.11304356
+A2LD1 0.08669322
+A2M   1.00000000
+A2ML1 1.00000000
+AAAS  0.04528599
 ```
+The BMA approach yields consistent results for the majority of genes as compared to the pre-selection approach.
 
 ### 7. iDEA variant model
 iDEA is mainly focusing on modeling the marginal effect size estimates and standard errors from DE analysis, which is equivalent to modeling of marginal z-scores. We also provide a variant of iDEA which models the cofficient of gene directly. 
 
 ```r
 idea_variant <- iDEA.fit(idea,modelVariant = T) ## 
+|======================================                                       |  50%, ETA 6:47
 idea_variant <- iDEA.louis(idea_variant) 
+|======================================                                          | 50%
 ###
 ```
 The results format of using iDEA variant model and iDEA are the same. 
@@ -240,16 +260,7 @@ The results format of using iDEA variant model and iDEA are the same.
 Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. 
 
 ```r
-idea_variant <- iDEA.fit(idea,modelVariant = T) ## 
-idea_variant <- iDEA.louis(idea_variant) 
+idea_null <- iDEA.fit.null (idea) ## 
+head(idea_null)
 ###
 ```
-### 9. Results Visualization
-For the GSE results, we can generate manhattan-like bubble plot, with each dot represent the pvalue under -log10 scale. 
-```r
-plot.GSE(idea) ## 
-```
-![iDEA\_pipeline](MethodPipline.png)
-
-
-
