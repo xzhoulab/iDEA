@@ -6,8 +6,8 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 #
 layout: home
-author: "Shiquan Sun, Ying Ma and Xiang Zhou"
-date: '2019-09-04'
+author: "Ying Ma, Shiquan Sun and Xiang Zhou"
+date: '2020-01-20'
 output:
 pdf_document: default
 html_document: default
@@ -230,16 +230,26 @@ idea <- iDEA.louis(idea) ##
 iDEA is mainly focusing on modeling the marginal effect size estimates and standard errors from DE analysis, which is equivalent to modeling of marginal z-scores. We also provide a variant of iDEA which models the cofficient of gene directly. 
 
 ```r
-idea <- iDEA.louis(idea,modelVariant = T) ## 
+idea_variant <- iDEA.fit(idea,modelVariant = T) ## 
+idea_variant <- iDEA.louis(idea_variant) 
+###
 ```
+The results format of using iDEA variant model and iDEA are the same. 
 
 ### 8. Estimating FDR
-iDEA is mainly focusing on modeling the marginal effect size estimates and standard errors from DE analysis, which is equivalent to modeling of marginal z-scores. We also provide a variant of iDEA which models the cofficient of gene directly. 
+Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. 
 
-
-
-
-
+```r
+idea_variant <- iDEA.fit(idea,modelVariant = T) ## 
+idea_variant <- iDEA.louis(idea_variant) 
+###
+```
+### 9. Results Visualization
+For the GSE results, we can generate manhattan-like bubble plot, with each dot represent the pvalue under -log10 scale. 
+```r
+plot.GSE(idea) ## 
+```
+![iDEA\_pipeline](MethodPipline.png)
 
 
 
