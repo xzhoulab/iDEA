@@ -212,6 +212,9 @@ names(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]])
  [6] "sigma2_e"     "info_mat"     "converged"    "ctime"
 ### posterior inclusion probability of a gene being DE gene.
 pip = idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip 
+### head the posterior inclusion probability and order by decreasing. 
+head(pip[order(pip,decreasing = T)])
+
 ```
 Certainly, sometimes it may not be easy to identify such pre-selected gene set for certain data sets. In the absence of pre-selected gene set, we developed a Bayesian model averaging (BMA) approach to aggregate DE evidence for any given genes across all available gene sets without the requirement of pre-selecting a gene set. See 6. Bayesian model averaging (BMA) approach. 
 
@@ -229,6 +232,10 @@ iDEA is mainly focusing on modeling the marginal effect size estimates and stand
 ```r
 idea <- iDEA.louis(idea,modelVariant = T) ## 
 ```
+
+### 8. Estimating FDR
+iDEA is mainly focusing on modeling the marginal effect size estimates and standard errors from DE analysis, which is equivalent to modeling of marginal z-scores. We also provide a variant of iDEA which models the cofficient of gene directly. 
+
 
 
 
