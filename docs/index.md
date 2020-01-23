@@ -24,7 +24,7 @@ iDEA: Integrative Differential expression and gene set Enrichment Analysis using
 
 We developed a new computational method, iDEA, that enables powerful DE and GSE analysis for scRNAseq studies through integrative statistical modeling. Our method builds upon a hierarchical Bayesian model for joint modeling of DE and GSE analyses. It uses only summary statistics as input, allowing for effective data modeling through complementing and pairing with various existing DE methods. It relies on an efficient expectation-maximization algorithm with internal Markov Chain Monte Carlo steps for scalable inference. By integrating DE and GSE analyses, iDEA can improve the power and consistency of DE analysis and the accuracy of GSE analysis over common existing approaches. iDEA is implemented as an R package with source code freely available at: www.xzlab.org/software.html. 
 
-## Require input data
+## Required input data
 ------------
 `iDEA` requires gene-level summary statistics in terms of fold change/effect size estimates and their variances as inputs, which can be obtained using any existing single-cell RNAseq DE approaches (i.e., [zingeR](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1406-4), [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5), etc.). Also `iDEA` requires a corresponding gene specific annotations, which are from the public databases (i.e., [KEGG](https://www.genome.jp/kegg/), [Reactome](https://reactome.org/), etc.). With DE test statistics as inputs, iDEA builds upon a hierarchical Bayesian model for joint modeling of GSEA and DE analysis.
 
