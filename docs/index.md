@@ -126,13 +126,13 @@ head(annotation_data[,1:3])
 ### 2. Create an `iDEA` object
 We encourage the user set `num_core > 1` if a large number of annotations is as input (`Linux` platform; for `Windows` platform, the `num_core` will be set 1, automatically). 
 
-The iDEA object is created by the function CreateiDEAObject. The essential inputs are
-- summary: summary statistics from common DE analsyis,with gene name as row names, while the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. Data.frame foramt 
-- annotation: gene specific annotations, i.e gene sets from predefined database. The rownames should be matched with the summary statistics. Data.frame format.
-project: Default is "iDEA".
-max_var_beta: The cutoff of the variance of the coefficient of genes. Genes with variance smaller than 'max_var_beta' are maintained. Default is 100
-min_percent_annot: The threshold of coverage rate (CR), i.e., the number of annotated genes (gene set size) divided by the number of tested genes. Default value is 0.0025. 
-num_core: number of cores for parallel implementation. Default is 10.
+The iDEA object is created by the function CreateiDEAObject. The essential inputs are:
+ summary: summary statistics from common DE analsyis,with gene name as row names, while the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. Data.frame foramt 
+ annotation: gene specific annotations, i.e gene sets from predefined database. The rownames should be matched with the summary statistics. Data.frame format.
+ project: Default is "iDEA".
+ max_var_beta: The cutoff of the variance of the coefficient of genes. Genes with variance smaller than 'max_var_beta' are maintained. Default is 100
+ min_percent_annot: The threshold of coverage rate (CR), i.e., the number of annotated genes (gene set size) divided by the  number of tested genes. Default value is 0.0025. 
+ num_core: number of cores for parallel implementation. Default is 10.
 
 ```r
 idea <- CreateiDEAObject(summary_data, annotation_data, max_var_beta = 100, min_precent_annot = 0.0025, num_core=10)
