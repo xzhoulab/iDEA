@@ -38,4 +38,4 @@ Ying Ma, Shiquan Sun, Evan T. Keller, Mengjie Chen and Xiang Zhou#. *Integrative
 
 How to use `iDEA`
 -------------------
-Details in [here](https://xzhoulab.github.io/iDEA/)
+Details in [Tutorial](https://xzhoulab.github.io/iDEA/)
