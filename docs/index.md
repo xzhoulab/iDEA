@@ -210,7 +210,7 @@ idea <- iDEA.louis(idea) ##
 ```
 
 ### 5. Output from iDEA
-'GSE' results from iDEA: the output of GSE results is stored in idea@gsea, with each row represents the gene set we tested. 
+`GSE` results from iDEA: the output of GSE results is stored in idea@gsea, with each row represents the gene set we tested. 
 ```r
 head(idea@gsea)
                                           annot_id annot_coef  annot_var
@@ -229,7 +229,7 @@ head(idea@gsea)
 6      0.01556261 37.38101 6.199137e-10 4.595172e-14
 
 ```
-'DE' results from iDEA: iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
+`DE` results from iDEA: iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
 
 ```r
 ### gene set coefficient estimate, tau_1 is the intercept, and tau_2 is the coefficient
