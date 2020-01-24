@@ -72,7 +72,7 @@ MGI:101757          0          0          0
 MGI:101758          0          0          0
 MGI:101759          0          0          0
 ```
-The organized gene sets can also be downloaded [here](https://github.com/xzhoulab/iDEA/tree/master/data/mouseGeneSets.RData) for human gene sets, and [here](https://github.com/xzhoulab/iDEA/tree/master/data/humanGeneSets.RData) for mouse gene sets.
+The organized gene sets can also be downloaded [here](https://github.com/xzhoulab/iDEA/tree/master/data/humanGeneSets.RData) for human gene sets, and [here](https://github.com/xzhoulab/iDEA/tree/master/data/mouseGeneSets.RData) for mouse gene sets.
 
 ## Getting started
 -------------
