@@ -73,7 +73,7 @@ CreateiDEAObject <- function(summary, annotation, project = "iDEA", max_var_beta
 	precent_annot <- apply(annotation, 2, sum)/num_gene
 	## filtering out at specificed precentage genes are annotated, 
 	annotation <- annotation[, which(precent_annot>min_precent_annot)] #  
-	
+	annotation = as.data.frame(annotation)
 	## convert annotation into list
 	annot_list <- mclapply(1:ncol(annotation), FUN = function(x) { which(annotation[,x]==1) }, mc.cores = getOption("mc.cores", num_core)
 	)# end parallel
