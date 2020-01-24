@@ -130,8 +130,8 @@ The iDEA object is created by the function CreateiDEAObject. The essential input
 - summary: summary statistics from common DE analsyis,with gene name as row names, while the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. Data.frame foramt 
 - annotation: gene specific annotations, i.e gene sets from predefined database. The rownames should be matched with the summary statistics. Data.frame format.
 - project: Default is "iDEA".
-- max_var_beta: The cutoff of the variance of the coefficient of genes. Genes with variance smaller than 'max_var_beta' are maintained. Default is 100
-- min_percent_annot: The threshold of coverage rate (CR), i.e., the number of annotated genes (gene set size) divided by the  number of tested genes. Default value is 0.0025. 
+- max_var_beta: the cutoff of the variance of the coefficient of genes. Genes with variance smaller than 'max_var_beta' are maintained. Default is 100
+- min_percent_annot: the threshold of coverage rate (CR), i.e., the number of annotated genes (gene set size) divided by the  number of tested genes. Default value is 0.0025. 
 - num_core: number of cores for parallel implementation. Default is 10.
 
 ```r
@@ -164,11 +164,29 @@ The gene indices which are annotated as 1 in the first gene set GO_CELLULAR_RESP
 iDEA relies on an expectation-maximization (EM) algorithm with internal Markov chain Monte Carlo (MCMC) steps for scalable model inference. 
 
 The function iDEA.fit fits the iDEA model on the input data. The essential inputs are:
-
+- object: iDEA object created by CreateiDEAObject.
+- fit_noGS: boolean variable to indicate whether fitting the model without the annoation/gene set. Default is FALSE.
+- init_beta: initial value for gene effect size, beta in MCMC sampling procedure. Default is NULL. 
+- init_tau: initial value for the coefficient of annotations/gene sets, including the intercept in EM procedure, default is c(-2,0.5).
+- min_degene: the threshold for the number of detected DE genes in summary statistics. For some of extremely cases, 
+the method does not work stably when the number of detected DE genes is 0.
+- em_iter: maximum iteration for EM algorithm, default is 15
+- mcmc_iter: maximum iteration for MCMC algorithm, default is 1000
+- fit.tol: tolerance for fitting the model, default is 1e-5.
+- verbose: print the messages about the fitting progresses. Default is TRUE.
+- modelVariant: model option to run, boolean variable, if FALSE, runing the  main iDEA model, which models on z score statistics. if TRUE, runing iDEA variant model which models on beta effect size.
 
 ```r
 idea <- iDEA.fit(idea,
-        ) ## model fitting
+                 fit_noGS=FALSE,
+	       init_beta=NULL, 
+	       init_tau=c(-2,0.5),
+	       min_degene=5,
+	       em_iter=15,
+	       mcmc_iter=1000, 
+	       fit.tol=1e-5,
+                 modelVariant = F,
+	       verbose=TRUE)
 ```
 ```
 ## ===== iDEA INPUT SUMMARY ==== ##
@@ -192,7 +210,7 @@ idea <- iDEA.louis(idea) ##
 ```
 
 ### 5. Output from iDEA
-GSE results from iDEA, with the pvalue for each gene set we tested. 
+'GSE' results from iDEA: the output of GSE results is stored in idea@gsea, with each row represents the gene set we tested. 
 ```r
 head(idea@gsea)
                                           annot_id annot_coef  annot_var
@@ -211,7 +229,7 @@ head(idea@gsea)
 6      0.01556261 37.38101 6.199137e-10 4.595172e-14
 
 ```
-iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
+'DE' results from iDEA: iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
 
 ```r
 ### gene set coefficient estimate, tau_1 is the intercept, and tau_2 is the coefficient
@@ -265,7 +283,7 @@ The results format of using iDEA variant model and iDEA are the same.
 
 ### 8. Estimating FDR
 Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. This may take a long time, we recommend use more cores to run the permutation. 
-
+The function iDEA.fit.null fits iDEA model by permuting gene labels in gene set, thus constructing tbe permuted null distribution for gene sets.
 ```r
 idea <- CreateiDEAObject(summary_data, annotation_data[,c(1:10)], num_core=10)
 idea <- iDEA.fit.null(idea) ## 
