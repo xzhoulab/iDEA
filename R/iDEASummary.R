@@ -38,15 +38,15 @@
 #'
 #'
 iDEA.fit <- function(object,
-					fit_noGS=FALSE,
-				    init_beta=NULL, 
-					init_tau=c(-2,0.5),
-					min_degene=5,
-					em_iter=15,
-					mcmc_iter=1000, 
-					fit.tol=1e-5,
-                    modelVariant = F,
-					verbose=TRUE, ...) {
+		     fit_noGS=FALSE,
+		     init_beta=NULL, 
+	             init_tau=c(-2,0.5),
+		     min_degene=5,
+		     em_iter=15,
+		     mcmc_iter=1000, 
+		     fit.tol=1e-5,
+                     modelVariant = F,
+		     verbose=TRUE, ...) {
   # number of cores
 	num_core <- object@num_core
 	
@@ -182,15 +182,15 @@ iDEA.fit <- function(object,
 #'
 #'
 iDEAWeight.fit <- function(object,
-					weight=NULL,
-					fit_noGS=FALSE,
-					init_beta=NULL, 
-					init_tau=c(-2,0.5),
-					min_degene=5,
-					em_iter=15,
-					mcmc_iter=1000, 
-					fit.tol=1e-5,
-					verbose=TRUE, ...) {
+			   weight=NULL,
+			   fit_noGS=FALSE,
+		           init_beta=NULL, 
+			   init_tau=c(-2,0.5),
+			   min_degene=5,
+			   em_iter=15,
+			   mcmc_iter=1000, 
+			   fit.tol=1e-5,
+			   verbose=TRUE, ...) {
 
 	##number of cores
 	num_core <- object@num_core
