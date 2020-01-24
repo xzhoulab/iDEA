@@ -72,7 +72,7 @@ MGI:101757          0          0          0
 MGI:101758          0          0          0
 MGI:101759          0          0          0
 ```
-The organized gene sets can also be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for human gene sets, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for mouse gene sets.
+The organized gene sets can also be downloaded [here](https://github.com/xzhoulab/iDEA/tree/master/data/mouseGeneSets.RData) for human gene sets, and [here](https://github.com/xzhoulab/iDEA/tree/master/data/humanGeneSets.RData) for mouse gene sets.
 
 ## Getting started
 -------------
@@ -83,7 +83,7 @@ library(iDEA)
 ### 1. Load summary statistics and annotations
 In this tutorial, we will apply `iDEA` on a sample data from human embryonic stem cell from [Chu et al](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1033-x) to detect DE genes and enriched pathways. The summary statistics of DE analysis has been prepared by [zingeR-DESeq2](https://github.com/statOmics/zinbwaveZinger) method. 
 
-The example data can also be downloaded [here](https://github.com/xzhoulab/iDEA/blob/master/data/annotation.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/blob/master/data/summary.RData) for summary statistics.
+The example data can also be downloaded [here](https://github.com/xzhoulab/iDEA/tree/master/data/annotation_data.RData) for annotations, and [here](https://github.com/xzhoulab/iDEA/tree/master/data/summary_data.RData) for summary statistics.
 
 Load summary data,
 ```r
