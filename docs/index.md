@@ -179,14 +179,14 @@ the method does not work stably when the number of detected DE genes is 0.
 ```r
 idea <- iDEA.fit(idea,
                  fit_noGS=FALSE,
-	       init_beta=NULL, 
-	       init_tau=c(-2,0.5),
-	       min_degene=5,
-	       em_iter=15,
-	       mcmc_iter=1000, 
-	       fit.tol=1e-5,
+	         init_beta=NULL, 
+	         init_tau=c(-2,0.5),
+	         min_degene=5,
+	         em_iter=15,
+	         mcmc_iter=1000, 
+	         fit.tol=1e-5,
                  modelVariant = F,
-	       verbose=TRUE)
+	         verbose=TRUE)
 ```
 ```
 ## ===== iDEA INPUT SUMMARY ==== ##
