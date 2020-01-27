@@ -214,19 +214,19 @@ idea <- iDEA.louis(idea) ##
 ```r
 head(idea@gsea)
                                           annot_id annot_coef  annot_var
-1                    GO_CELLULAR_RESPONSE_TO_LIPID  0.3086188 0.01092418
-2                             GO_SECRETION_BY_CELL  0.4801154 0.01033262
-3 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY  0.3298603 0.01846143
-4            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH  0.8185382 0.01728740
-5        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS  0.2942673 0.01746244
-6                  GO_ACTIN_FILAMENT_BASED_PROCESS  0.7716152 0.01046456
+1                    GO_CELLULAR_RESPONSE_TO_LIPID  0.3101074 0.01092405
+2                             GO_SECRETION_BY_CELL  0.4803171 0.01033267
+3 GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY  0.3335924 0.01845976
+4            GO_REGULATION_OF_DEVELOPMENTAL_GROWTH  0.7983761 0.01722159
+5        GO_CELLULAR_RESPONSE_TO_EXTERNAL_STIMULUS  0.3097789 0.01745458
+6                  GO_ACTIN_FILAMENT_BASED_PROCESS  0.7720139 0.01046010
   annot_var_louis sigma2_b pvalue_louis       pvalue
-1      0.01607571 37.34123 1.492913e-02 3.149486e-03
-2      0.01504002 37.38134 9.043945e-05 2.321128e-06
-3      0.02778457 37.35269 4.782504e-02 1.519437e-02
-4      0.02595835 37.38401 3.765826e-07 4.800278e-10
-5      0.02557512 37.38573 6.575866e-02 2.595777e-02
-6      0.01556261 37.38101 6.199137e-10 4.595172e-14
+1      0.01548977 37.37384 1.271457e-02 3.007027e-03
+2      0.01467251 37.38621 7.330424e-05 2.298691e-06
+3      0.02674372 37.32392 4.136199e-02 1.407704e-02
+4      0.02497394 37.35476 4.371900e-07 1.174085e-09
+5      0.02448467 37.36763 4.773453e-02 1.903970e-02
+6      0.01482588 37.42016 2.292072e-10 4.405020e-14
 
 ```
 `DE` results from iDEA: iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
@@ -235,20 +235,20 @@ head(idea@gsea)
 ### gene set coefficient estimate, tau_1 is the intercept, and tau_2 is the coefficient
 idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$annot_coef
       annot_coef
-tau_1 -0.3570081
-tau_2  0.3320596
+tau_1 -0.3567912
+tau_2  0.3335924
 
 ### posterior inclusion probability of a gene being DE gene.
 pip = unlist(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip)
 ### head the posterior inclusion probability and order by decreasing. 
 head(pip)
         PIP
-A1BG  0.195
+A1BG  0.210
 A1CF  0.120
-A2LD1 0.080
+A2LD1 0.105
 A2M   1.000
 A2ML1 1.000
-AAAS  0.060
+AAAS  0.040
 ```
 Certainly, sometimes it may not be easy to identify such pre-selected gene set for certain data sets. In the absence of pre-selected gene set, we developed a Bayesian model averaging (BMA) approach to aggregate DE evidence for any given genes across all available gene sets without the requirement of pre-selecting a gene set. See 6. Bayesian model averaging (BMA) approach. 
 
@@ -260,12 +260,12 @@ Here, we looked at the posterior inclusion probability (PIPs) for each gene infe
 idea <- iDEA.BMA(idea) ##
 head(idea@BMA_pip)
          BMA_pip
-A1BG  0.21635704
-A1CF  0.11666890
-A2LD1 0.09071130
+A1BG  0.21521492
+A1CF  0.11058475
+A2LD1 0.09177833
 A2M   1.00000000
 A2ML1 1.00000000
-AAAS  0.04992091
+AAAS  0.04465690
 ```
 The BMA approach yields consistent results for the majority of genes as compared to the pre-selection approach.
 
