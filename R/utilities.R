@@ -157,12 +157,12 @@ QQNorm <- function(counts, lib_size=NULL){
 #             Calculate FDR by permuted null         #
 ######################################################
 #' We constructed a permuted null distribution by permuting gene labels. Specifically, we permuted the gene labels of annotation matrix to construced the null pvakue for gene sets. Then we calculate FDR for each gene sets given the permuted null distribution
-
+#'
 #' @param object.alt iDEA object under the alternative. iDEA analysis in this object was performed using real gene sets
 #' @param object.null iDEA object under the permuted null. iDEA analysis in this object was performed by permuting the gene labels in gene sets.
 #' @param numPermute Number of permutation used in object.null. Default is 10.
 #' @param ... Ignored
-
+#'
 #' @return Returns a data frame which stores the results of iDEA with FDR values for each gene sets
 #'
 #' @export
