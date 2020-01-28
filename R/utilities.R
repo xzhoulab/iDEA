@@ -175,8 +175,6 @@ QQNorm <- function(counts, lib_size=NULL){
 #'
 #' @export
 #'
-#'
-#'
 iDEA.FDR <- function(object.alt,object.null,numPermute = 10){
     alt = object.alt@gsea$pvalue_louis
     names(alt) = object.alt@gsea$annot_id
