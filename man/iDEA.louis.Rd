@@ -15,7 +15,7 @@ iDEA.louis(object)
 Returns a iDEA object with corrected p-values stored in object@gsea.
 }
 \description{
-A part of variance is missed when we use EM algorithm, since we should use the complete-data gradient vector or second derivative matrix rather than the incomplete data likelihood. 
-See details: "Thomas A. Louis. Finding the Observed Information Matrix when Using the EM Algorithm, Journal of the Royal Statistical Society. 
+A part of variance is missed when we use EM algorithm, since we should use the complete-data gradient vector or second derivative matrix rather than the incomplete data likelihood.
+See details: "Thomas A. Louis. Finding the Observed Information Matrix when Using the EM Algorithm, Journal of the Royal Statistical Society.
 Series B (Methodological) Vol. 44, No. 2 (1982), pp. 226-233".
 }

@@ -27,7 +27,7 @@ iDEA.fit(
 
 \item{init_tau}{Initial value for annotations, including the intercept in EM procedure, default is c(-2,0.5).}
 
-\item{min_degene}{The threshold for the number of detected DE genes. For some of extremely cases, 
+\item{min_degene}{The threshold for the number of detected DE genes. For some of extremely cases,
 the method does not work when the number of detected DE genes is 0.}
 
 \item{em_iter}{Maximum iteration for EM algorithm, default is 15}

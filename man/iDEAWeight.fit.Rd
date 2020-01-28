@@ -11,7 +11,7 @@ iDEAWeight.fit(
   init_beta = NULL,
   init_tau = c(-2, 0.5),
   min_degene = 5,
-  em_iter = 10,
+  em_iter = 15,
   mcmc_iter = 1000,
   fit.tol = 1e-05,
   verbose = TRUE,
@@ -29,7 +29,7 @@ iDEAWeight.fit(
 
 \item{init_tau}{Initial value for annotations, including the intercept}
 
-\item{min_degene}{The threshold for the number of detected DE genes. For some of extremely cases, 
+\item{min_degene}{The threshold for the number of detected DE genes. For some of extremely cases,
 the method does not work when the number of detected DE genes is 0.}
 
 \item{em_iter}{Maximum iteration for EM algorithm}

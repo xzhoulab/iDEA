@@ -14,13 +14,13 @@ CreateiDEAObject(
 )
 }
 \arguments{
-\item{summary}{Summary statistics (the estimated gene effect size and its variance, g1 x 2 matrix) from single-cell RNAseq differential expression tools, i.g. zingeR, MAST, etc.}
+\item{summary}{Summary statistics (the estimated gene effect size and its variance, g1 x 2 matrix) from single-cell RNAseq differential expression tools, i.g. zingeR, MAST, etc. The summary statistics file should be in data.frame data format with gene name as row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene.}
 
-\item{annotation}{Pre-definted gene specific annotations (gene sets, g2 x m matrix), i.e., GO term, pathways etc.}
+\item{annotation}{Pre-definted gene specific annotations (gene sets, g2 x m matrix), i.e., GO term, pathways etc. The gene specific annotation file is required data.frame data format with gene name as row names, while the header is the gene specific annotation name. The row names of annotation file should match exactly with row names of summary statistics and should be in the same type, i.e. gene symbol or transcription id etc. If not, one solution is to use biomaRt R package to convert the gene name to make sure they are consistent each other.}
 
 \item{project}{Project name (string).}
 
-\item{max_var_beta}{Include genes where the variances which are smaller than 'max_var_beta' are maintained  .}
+\item{max_var_beta}{Include genes where the variances which are smaller than 'max_var_beta' are maintained.}
 
 \item{min_precent_annot}{The threshold of coverage rate (CR), i.e., the number of annotated genes (gene set size) divided by the number of tested genes.}
 
