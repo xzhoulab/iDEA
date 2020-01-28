@@ -290,7 +290,7 @@ idea.null <- iDEA.fit.null(idea.null,numPermute = 10) ##
 idea.null <- iDEA.louis(idea.null) 
 head(idea.null@gsea)
 ```
-### Then we have the pvalues under the permuted null, we can calculate FDR by using the function iDEA.FDR. 
+Then we have the pvalues under the permuted null, we can calculate FDR by using the function iDEA.FDR. 
 The function iDEA.FDR calculate the estimated FDR for each gene set given the permuted null distribution of pvalues for gene sets. The inputs are:
 - object.alt: iDEA object when runing iDEA on real gene sets.
 - object.null: iDEA object when runing iDEA on permuted gene sets.
