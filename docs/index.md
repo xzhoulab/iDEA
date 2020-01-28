@@ -282,12 +282,22 @@ idea_variant <- iDEA.louis(idea_variant)
 The results format of using iDEA variant model and iDEA are the same. 
 
 ### 8. Estimating FDR
-Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. This may take a long time, we recommend use more cores to run the permutation. 
+Here we provide a method to calculate calibrated FDR estimates of gene sets based on permuted null distribution. Here we only permuted 10 times for the first 10 gene sets in annotation_data as an example to show the usage of iDEA on permutation. Basically, we construct an empirical null p-value distribution by permuting the gene labels for each gene set. This may take a long time, we recommend use more cores to run the permutation. 
 The function iDEA.fit.null fits iDEA model by permuting gene labels in gene set, thus constructing tbe permuted null distribution for gene sets.
 ```r
-idea <- CreateiDEAObject(summary_data, annotation_data[,c(1:10)], num_core=10)
-idea <- iDEA.fit.null(idea) ## 
-idea <- iDEA.louis(idea) 
-head(idea@gsea)
-###
+idea.null <- CreateiDEAObject(summary_data, annotation_data[,c(1:10)], num_core=10)
+idea.null <- iDEA.fit.null(idea.null,numPermute = 10) ## 
+idea.null <- iDEA.louis(idea.null) 
+head(idea.null@gsea)
+```
+### Then we have the pvalues under the permuted null, we can calculate FDR by using the function iDEA.FDR. 
+The function iDEA.FDR calculate the estimated FDR for each gene set given the permuted null distribution of pvalues for gene sets. The inputs are:
+- object.alt: iDEA object when runing iDEA on real gene sets.
+- object.null: iDEA object when runing iDEA on permuted gene sets.
+- numPermute: number of permutations used in idea.null. Default is 10.
+The results are returned as a data frame with FDR values estimated for each gene set.
+
+```r
+df.FDR <- iDEA.FDR(idea,idea.null,numPermute = 10)
+head(df.FDR)
 ```
