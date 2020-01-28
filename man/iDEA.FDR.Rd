@@ -12,8 +12,6 @@ iDEA.FDR(object.alt, object.null, numPermute = 10)
 \item{object.null}{iDEA object under the permuted null. iDEA analysis in this object was performed by permuting the gene labels in gene sets.}
 
 \item{numPermute}{Number of permutation used in object.null. Default is 10.}
-
-\item{...}{Ignored}
 }
 \value{
 Returns a data frame which stores the results of iDEA with FDR values for each gene sets
