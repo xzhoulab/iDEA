@@ -280,6 +280,7 @@ iDEAWeight.fit <- function(object,
 #' @import doParallel
 #' @import foreach
 #' @import parallel
+#' @import pbmcapply
 #' @import stats
 #' @import utils
 #'
@@ -295,16 +296,16 @@ iDEA.louis <- function(object){
         if(num_core > detectCores()){warning("LOUIS:: the number of cores you're setting is larger than detected cores!");num_core = detectCores()}
     }#end fi
     ## modified here if need parallel, by default num_core=1
-    num_core <- 1
-    cl <- makeCluster(num_core)
-    registerDoSNOW(cl)
+    if(.Platform$OS.type == "windows"){num_core <- 1}
+    ## cl <- makeCluster(num_core)
+    ## registerDoSNOW(cl)
     num_annot <- length(object@de)
     
-    pb <- txtProgressBar(max = num_annot, style = 3)
-    progress <- function(n) setTxtProgressBar(pb, n)
-    opts <- list(progress = progress)
+    #pb <- txtProgressBar(max = num_annot, style = 3)
+    #progress <- function(n) setTxtProgressBar(pb, n)
+    #opts <- list(progress = progress)
     # parallel
-    res_all <- foreach(i=1:num_annot, .combine=rbind, .options.snow=opts) %dopar% {
+    res_all <- pbmclapply(1:num_annot, FUN = function(i){
         res <- object@de[[i]]
         Annot <- rep(0, object@num_gene)
         Annotind = which(names(object@annotation) == names(object@de)[i])
@@ -338,14 +339,15 @@ iDEA.louis <- function(object){
             try_test <- try( louis_var <- LouisMethod(res, Annot), silent=T)
             if(class(try_test)=="try-error"){
                 print("try-error!")
+                resTemp = NULL
             }else{
-                reseach <- data.frame(annot_id=object@annot_id[Annotind], annot_coef=res$annot_coef[2], annot_var=res$annot_var[2], annot_var_louis=louis_var[2], sigma2_b=res$sigma2_beta)
-            }# end fi
-        }# end fi
-    }# end louis
-    close(pb)
-    stopCluster(cl)
-
+                resTemp = data.frame(annot_id=object@annot_id[Annotind], annot_coef=res$annot_coef[2], annot_var=res$annot_var[2], annot_var_louis=louis_var[2], sigma2_b=res$sigma2_beta)
+            }
+        }else{
+            resTemp = NULL
+        }
+        },mc.cores = getOption("mc.cores", num_core)) #### end fi
+    res_all <- do.call(rbind, res_all)    
     ## remove the negative variance genes
     pos_index <- which(res_all$annot_var_louis>0)
     zscore <- res_all$annot_coef[pos_index]/sqrt(res_all$annot_var[pos_index])
