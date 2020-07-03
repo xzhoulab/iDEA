@@ -240,7 +240,7 @@ tau_2  0.3335924
 
 ### posterior inclusion probability of a gene being DE gene.
 pip = unlist(idea@de[["GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY"]]$pip)
-### head the posterior inclusion probability and order by decreasing. 
+### head the posterior inclusion probability for each gene
 head(pip)
         PIP
 A1BG  0.210
