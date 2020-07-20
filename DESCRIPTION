@@ -11,10 +11,9 @@ License: GPL-3
 Imports: Rcpp (>= 1.0.0), RcppArmadillo, doParallel, doSNOW, pbmcapply,
         foreach, parallel, methods, utils, stats
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 NeedsCompilation: yes
-Packaged: 2019-09-04 22:40:16 UTC; shiquans, yingma
-Suggests: 
-    knitr,
-    rmarkdown
+Packaged: 2020-07-20 21:41:26 UTC; yingma
+Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
+Depends: R (>= 3.5.0)
