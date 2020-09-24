@@ -338,7 +338,7 @@ iDEA.louis <- function(object){
         if(!is.na(res$annot_coef[2]) ){
             try_test <- try( louis_var <- LouisMethod(res, Annot), silent=T)
             if(class(try_test)=="try-error"){
-                print("try-error!")
+                #print("try-error!")
                 resTemp = NULL
             }else{
                 resTemp = data.frame(annot_id=object@annot_id[Annotind], annot_coef=res$annot_coef[2], annot_var=res$annot_var[2], annot_var_louis=louis_var[2], sigma2_b=res$sigma2_beta)

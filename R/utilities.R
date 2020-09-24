@@ -48,7 +48,8 @@ CreateiDEAObject <- function(summary, annotation, project = "iDEA", max_var_beta
 	colnames(summary) <- c("beta", "beta_var")
 	keep_index <- summary$beta_var<max_var_beta & !is.na(summary$beta_var)
 	summary <- as.data.frame(summary[keep_index,])
-	
+	summary <- summary[summary$beta_var > 0,] #### remove zero variance
+
 	if(!is.data.frame(annotation)){
 		annotation <- as.data.frame(annotation)
 	}# end fi
