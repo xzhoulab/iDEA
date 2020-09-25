@@ -39,6 +39,19 @@ A2M       8.671972e-06 0.002353646
 ...
 ```
 The summary statistics file should be in  `data.frame` data format with gene name as row names, while the column names are not required but the order of the column matters: the first column should be the coefficient and the second column should be the variance of the coefficient for each gene. 
+Here is an example of calculating standard error when you only have the p-value and beta coefficient available
+
+```
+## Assume you have obtained the DE results from i.e. zingeR, edgeR or MAST with the data frame res_DE (column: pvalue and LogFC)
+pvalue <- res_DE$pvalue #### the pvalue column
+zscore <- qnorm(pvalue/2.0, lower.tail=FALSE) #### convert the pvalue to z-score
+beta <- res_DE$LogFC ## effect size
+se_beta <- abs(beta/zscore) ## to approximate the standard error of beta
+beta_var = se_beta^2  ### square 
+summary = data.frame(beta = beta,beta_var = beta_var)
+## add the gene names as the rownames of summary
+rownames(summary) = rownames(res_DE) ### or the gene id column in the res_DE results
+```
 
 ### 2. Gene specific annotations,  e.g.,
 ```
