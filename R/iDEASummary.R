@@ -102,6 +102,7 @@ iDEA.fit <- function(object,
     if(!modelVariant){ ### if using the variant model
     if(verbose){cat(paste("## fitting the model with gene sets information... \n"))}
     res_idea <- pbmclapply(1:num_annot, FUN = function(x) {
+        set.seed(x)
         Annot <- rep(0, object@num_gene)
         Annot[object@annotation[[x]]] <- 1
         Annot <- Annot - mean(Annot)
@@ -119,10 +120,11 @@ iDEA.fit <- function(object,
             res$converged   <- TRUE
             res$ctime   <- t1[3]
         }else{res <- NULL}
-        return(res)}, mc.cores = getOption("mc.cores", num_core)
+        return(res)}, mc.cores = getOption("mc.cores", num_core),mc.set.seed = FALSE
     )}else{ ### if using the variant model
         if(verbose){cat(paste("## fitting the iDEA variant model with gene sets information... \n"))}
         res_idea <- pbmclapply(1:num_annot, FUN = function(x) {
+               set.seed(x)
                Annot <- rep(0, object@num_gene)
                Annot[object@annotation[[x]]] <- 1
                Annot <- Annot - mean(Annot)
@@ -141,7 +143,7 @@ iDEA.fit <- function(object,
                    res$ctime   <- t1[3]
                    
                }else{res <- NULL}
-               return(res)}, mc.cores = getOption("mc.cores", num_core)
+               return(res)}, mc.cores = getOption("mc.cores", num_core),mc.set.seed = FALSE
            )
     }# end parallel
         }
