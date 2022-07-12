@@ -242,6 +242,9 @@ head(idea@gsea)
 6      0.01482588 37.42016 2.292072e-10 4.405020e-14
 
 ```
+Specifically, the "annot_id" represents the gene set name, "annot_coef" is the estimated gene set enrichment parameter that determines the odds ratio of DE for genes inside the gene set versus genes outside the gene set. "annot_var" is the estimated variance of the annot_coef, "annot_var_louis" is the adjuested variance of the annot_coef by the Louis Method, "sigma2_b" is the scaling parameter. "pvalue_louis" is the pvalue calculated when applying Louis method to calibrate the pvalues while "pvalue" is the common pvalue without Louis Method correction. 
+
+
 `DE` results from iDEA: iDEA analyzes one gene set at a time, and perform the integrative differential expression analysis and gene set enrichment analysis. We can look at the DE results when adding the pre-selected gene set based on biological knowledge e.g.GO_REGULATION_OF_CANONICAL_WNT_SIGNALING_PATHWAY
 
 ```r
