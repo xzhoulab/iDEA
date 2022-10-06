@@ -227,7 +227,7 @@ iDEAWeight.fit <- function(object,
     if(fit_noGS){
         ## fit the model under the null
         Annot <- as.matrix(data.frame(rep(1, num_gene)))
-        t1 <- system.time(model1 <- try( res <- EMMCMCStepSummaryWeight(object@summary[,1], object@summary[,2], weight, as.matrix(Annot), init_beta, init_tau[1], em_iter, mcmc_iter, min_degene) ))
+        t1 <- system.time(model1 <- try( res <- EMMCMCStepSummaryWeight(object@summary[,1], object@summary[,2], weight, as.matrix(Annot), init_beta, init_tau[1], em_iter, mcmc_iter, min_degene),silent = TRUE))
         if(class(model1) != "try-error"){
             rownames(res$pip) <- object@gene_id
             res$converged   <- TRUE
@@ -337,7 +337,7 @@ iDEA.louis <- function(object){
         }# end function
         #################
         
-        if(!is.na(res$annot_coef[2]) ){
+        if(!is.null(res$annot_coef[2]) ){
             try_test <- try( louis_var <- LouisMethod(res, Annot), silent=T)
             if(class(try_test)=="try-error"){
                 #print("try-error!")
